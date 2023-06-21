@@ -7,11 +7,10 @@ from src.tests.conftest import BaseTest
 
 class TestSearch(BaseTest):
 
-    # @classmethod
-    # def teardown_class(cls):
-    #     pass
+    @classmethod
+    def teardown_class(cls):
+        pass
 
-    @pytest.mark.dependency()
     def test_01_searches(self):
         """
         tests search box.
@@ -36,6 +35,9 @@ class TestSearch(BaseTest):
         header_page.click_report_button()
         logger.info('Click the report button Clock app')
 
-        assert header_page.assert_text() == 'Clock'
-        logger.info('assertion successful')
+        header_page.wait_visibility_of_element_located_by_xpath(
+            self.wait, header_page.locator['assert_element_clock']
+        )
+
+        logger.info('Search assertion was successful')
         time.sleep(3)
