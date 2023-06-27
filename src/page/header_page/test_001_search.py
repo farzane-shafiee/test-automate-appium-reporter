@@ -1,21 +1,16 @@
-import time
-import pytest
 from src.logs.logs_config import logger
-from src.page.header_page.header_page import HeaderPage
-from src.tests.conftest import BaseTest
+from src.page.header_page.header_page_action import HeaderPageAction
+from src.conftest import BaseTest
 
 
 class TestSearch(BaseTest):
-
-    @classmethod
-    def teardown_class(cls):
-        pass
 
     def test_01_searches(self):
         """
         tests search box.
         """
-        header_page = HeaderPage(self.driver)
+
+        header_page = HeaderPageAction(self.driver)
 
         logger.info('Connected device is successfully')
 
@@ -40,4 +35,4 @@ class TestSearch(BaseTest):
         )
 
         logger.info('Search assertion was successful')
-        time.sleep(3)
+        # time.sleep(3)

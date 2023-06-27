@@ -1,30 +1,20 @@
 import time
-import pytest
-
 from src.logs.logs_config import logger
-from src.tests.conftest import BaseTest
-from src.page.report_page.reporter_page import ReporterPage
+from src.page.report_page.reporter_page_action import ReporterPageAction
+from src.page.header_page.test_001_search import TestSearch
 
 
-class TestReporter(BaseTest):
+class TestReporter:
+
+    wait = None
 
     def test_02_reporters(self):
+        run_search_test = TestSearch()
+        run_search_test.setup_class()  # Set up the test environment for search
+        self.wait = run_search_test.wait
 
-        reporter_page = ReporterPage(self.driver)
-
-        logger.info('Connected device is successfully')
-
-        reporter_page.wait_element_to_be_clickable_by_id(
-            self.wait, reporter_page.locator['report_button']
-        )
-
-        reporter_page.click_report_button()
-        logger.info('Click the report button')
-
-        reporter_page.wait_visibility_of_element_located_by_xpath(
-            self.wait, reporter_page.locator['assert_element']
-        )
-        logger.info('Report assertion was successfully')
+        reporter_page = ReporterPageAction(run_search_test.driver)
+        run_search_test.test_01_searches()
 
         reporter_page.click_report_type_dropdown()
 
@@ -52,5 +42,4 @@ class TestReporter(BaseTest):
 
         reporter_page.insert_bug_report_text('ERROR')
         time.sleep(2)
-
 

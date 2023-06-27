@@ -8,7 +8,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-
 class BasePage:
 
     def __init__(self, driver):
@@ -62,6 +61,7 @@ class BasePage:
 
 class BaseTest:
     driver = None
+    wait = None
 
     @classmethod
     def setup_class(cls):
@@ -71,13 +71,6 @@ class BaseTest:
         cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", cls.read_data_device())
         cls.driver.implicitly_wait(10)
         cls.wait = WebDriverWait(cls.driver, 10)
-
-    @classmethod
-    def teardown_class(cls):
-        """
-        Close session app
-        """
-        cls.driver.close_app()
 
     @classmethod
     def read_data_device(cls):
@@ -91,3 +84,25 @@ class BaseTest:
             return json.loads(json_data)
 
 
+# @pytest.fixture()
+# def search_button(driver):
+#     driver.find_element(By.ID, locator['search_button']).click()
+#     driver.find_element(By.ID, locator['search_input']).send_keys(search_input)
+#
+# @pytest.fixture(scope="session")
+# def search(self, search_input):
+#
+#     self.wait_element_to_be_clickable_by_id(
+#         self.wait, self.locator['search_button']
+#     )
+#
+#
+#     self.wait_visibility_of_element_located_by_xpath(
+#         self.wait, self.locator['assert_element_clock']
+#     )
+#
+#     self.driver.find_element(By.ID, self.locator['report_button']).click()
+#
+#     self.wait_visibility_of_element_located_by_xpath(
+#         self.wait, self.locator['assert_element_clock']
+#     )

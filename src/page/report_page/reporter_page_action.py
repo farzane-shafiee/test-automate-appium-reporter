@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
-from src.tests.conftest import BasePage
+from src.conftest import BasePage
 from src.page.report_page.reporter_page_locators import ReporterPageLocators
 
 
-class ReporterPage(BasePage):
+class ReporterPageAction(BasePage):
     """
     All header page tests operations are in this class.
     """
