@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
-from src.conftest import BasePage
-from src.page.report_page.reporter_page_locators import ReporterPageLocators
+from src.config.page_config.base_page import BasePage
+from src.apps.reporter_app.page.report_page.reporter_page_locators import ReporterPageLocators
 
 
 class ReporterPageAction(BasePage):

@@ -1,6 +1,6 @@
 from src.logs.logs_config import logger
-from src.page.header_page.header_page_action import HeaderPageAction
-from src.conftest import BaseTest
+from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
+from src.config.test_config.base_test import BaseTest
 
 
 class TestSearch(BaseTest):
@@ -12,7 +12,7 @@ class TestSearch(BaseTest):
 
         header_page = HeaderPageAction(self.driver)
 
-        logger.info('Connected device is successfully')
+        logger.info('Connected device_data is successfully')
 
         header_page.wait_element_to_be_clickable_by_id(
             self.wait, header_page.locator['search_button']

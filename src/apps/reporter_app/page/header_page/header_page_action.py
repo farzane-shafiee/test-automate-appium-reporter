@@ -1,7 +1,6 @@
-import pytest
 from selenium.webdriver.common.by import By
-from src.conftest import BasePage
-from src.page.header_page.header_page_locators import HeaderPageLocators
+from src.config.page_config.base_page import BasePage
+from src.apps.reporter_app.page.header_page.header_page_locators import HeaderPageLocators
 
 
 class HeaderPageAction(BasePage):
