@@ -14,6 +14,7 @@ class ReporterPageLocators:
             "image_file": 'com.android.documentsui:id/icon_thumb',
             "assert_not_attach_file": '//*[not(@text="Attach file")]',
             "bug_report_text_input": 'com.dariaos.reporter:id/edtTxtReportPage',
+            "send_report_button": 'com.dariaos.reporter:id/btnSendReportReportPage'
         }
 
     def __getitem__(self, index):

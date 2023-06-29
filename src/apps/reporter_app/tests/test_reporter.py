@@ -28,6 +28,10 @@ class TestReporter:
             wait, reporter_page.locator['assert_file_manager']
         )
 
+        reporter_page.wait_visibility_of_element_located_by_xpath(
+            wait, reporter_page.locator['assert_file_manager']
+        )
+
         reporter_page.click_image_file()
 
         reporter_page.wait_visibility_of_element_located_by_xpath(
@@ -37,5 +41,7 @@ class TestReporter:
         reporter_page.click_bug_report_text_input()
 
         reporter_page.insert_bug_report_text('ERROR')
+
+        reporter_page.click_send_report_button()
         time.sleep(2)
 

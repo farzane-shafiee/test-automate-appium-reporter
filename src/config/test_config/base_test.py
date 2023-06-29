@@ -2,6 +2,8 @@ import json
 from appium import webdriver
 import yaml
 from selenium.webdriver.support.wait import WebDriverWait
+# from selenium.common.exceptions import ConnectionRefusedError
+from src.logs.logs_config import logger
 
 
 class BaseTest:
@@ -13,7 +15,11 @@ class BaseTest:
         """
         Remote and connect to device_data.
         """
-        cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", cls.read_data_device())
+        try:
+            cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", cls.read_data_device())
+        except Exception as e:
+            logger.warning(f"Error connecting to:{e}")
+            assert False
         cls.driver.implicitly_wait(10)
         cls.wait = WebDriverWait(cls.driver, 10)
 

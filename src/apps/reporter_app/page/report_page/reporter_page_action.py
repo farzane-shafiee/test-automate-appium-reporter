@@ -35,3 +35,7 @@ class ReporterPageAction(BasePage):
 
     def insert_bug_report_text(self, text):
         self.driver.find_element(By.ID, self.locator['bug_report_text_input']).send_keys(text)
+        self.driver.press_keycode(4)
+
+    def click_send_report_button(self):
+        self.driver.find_element(By.ID, self.locator['send_report_button']).click()
