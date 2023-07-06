@@ -34,14 +34,14 @@ class MySQLManager(AbstractDBManager, QueryExecutionMixin):
             self.connection.close()
             self.connection = None
 
-    def execute_query(self):
+    def execute_query1(self):
         if not self.connection:
             raise Exception("Not connected to the database.")
         cursor = self.connection.cursor()
 
-        log_file = open('src/logs/log.log', 'r')
+        log_file = open('logs/log.log', 'r')
         for values in log_file:
-            query = f"INSERT INTO reporter_logs (message) VALUES ('{values}')"
-            cursor.execute(query)
+            query = "INSERT INTO reporter_logs (logs) VALUES (%s)"
+            cursor.execute(query, (values,))
         self.connection.commit()
         return cursor

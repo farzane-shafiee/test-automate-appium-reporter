@@ -7,7 +7,7 @@ class TestSearch(BaseTest):
 
     def test_01_searches(self):
         """
-        tests search box.
+        Search box test.
         """
 
         header_page = HeaderPageAction(self.driver)
@@ -36,3 +36,4 @@ class TestSearch(BaseTest):
 
         logger.info('Search assertion was successful')
         # time.sleep(3)
+        self.mysql_manager.execute_query1()

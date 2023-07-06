@@ -32,7 +32,7 @@ class BaseTest:
 
     # @classmethod
     # def teardown_class(cls):
-    #     cls.driver.close_app()
+    #     cls.mysql_manager.close_connection()
 
     @classmethod
     def initialize_mysql_manager(cls):
@@ -57,6 +57,7 @@ class BaseTest:
             port=int(db_port),
             database=db_database,
         )
+        cls.mysql_manager.connect()
         
     @classmethod
     def read_data_device(cls):
