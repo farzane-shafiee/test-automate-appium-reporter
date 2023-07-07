@@ -20,5 +20,11 @@ class HeaderPageAction(BasePage):
     def click_report_button(self):
         self.driver.find_element(By.ID, self.locator['report_button']).click()
 
+    def assert_search_button(self):
+        element = self.driver.find_element(By.ID, self.locator['search_button'])
+        return element
 
+    def assert_search_result(self):
+        search_result = self.driver.find_element(By.XPATH, self.locator['assert_search_result'])
+        return search_result
 
