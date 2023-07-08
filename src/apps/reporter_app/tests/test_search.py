@@ -2,6 +2,8 @@ from selenium.common import TimeoutException
 from src.logs.logs_config import logger
 from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
 from src.config.test_config.base_test import BaseTest
+from src.utils.process_data.data_handler import YAMLReader
+from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 
 
 class TestSearch(BaseTest):
@@ -24,33 +26,26 @@ class TestSearch(BaseTest):
             header_page.click_search_button()
             logger.info('Click the search button')
 
-            header_page.send_keys_search_input('clock')
-            logger.info('Insert the word "clock" in the search box')
+            data = self.read_search_data()
+
+            header_page.send_keys_search_input(data['search_input'])
+            logger.info(f"Insert the word <{data['search_input']}> in the search box")
 
             if len(header_page.find_search_result_list()) >= 1:
-                for item in header_page.find_search_result_list():
-                    if item.text == 'Clock':
-                        logger.info('Ok')
+                for items in header_page.find_search_result_list():
+                    if data['search_input'].lower() in items.text.lower():
+                        logger.info('Search result is find.')
                         assert True
                     else:
-                        logger.error('input is not equal result.')
+                        logger.error(f'search result: {items.text.lower()}, data input is not equal search result.')
                         assert False
             else:
-                logger.error('list is 0.')
+                logger.error('Search result is empty.')
                 assert False
 
-
-
-
-
-
-
-            # header_page.wait_visibility_of_element_located_by_xpath(
-            #     self.wait, header_page.locator['assert_search_result']
-            # )
-
-            # assert header_page.assert_search_result() is None and\
-            #        header_page.find_search_result_list() < 1, 'Search result element not found'
+            header_page.wait_visibility_of_element_located_by_xpath(
+                self.wait, header_page.locator['assert_search_result']
+            )
 
             header_page.click_report_button()
             logger.info('Click the report button Clock app')
@@ -66,9 +61,11 @@ class TestSearch(BaseTest):
             logger.error(f'Assertion Error {str(e)}')  # Log the assertion error message
             self.mysql_manager.execute_saved_log_query()
             assert False
-            # raise NoSuchElementException  # Reraise the assertion error
 
         except TimeoutException as e:
             logger.error(f'Timeout Exception: {str(e)}')
             self.mysql_manager.execute_saved_log_query()
             assert False
+
+    def read_search_data(self):
+        return YAMLReader.data_reader(SEARCH_INPUT_DATA_FILE_PATH)

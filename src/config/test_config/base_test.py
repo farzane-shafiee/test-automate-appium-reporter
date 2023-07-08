@@ -1,11 +1,10 @@
-import json
 import os
 from dotenv import load_dotenv
 from appium import webdriver
-import yaml
 from selenium.webdriver.support.wait import WebDriverWait
 from src.db_connection_handler.db_handler import MySQLManager
 from src.logs.logs_config import logger
+from src.utils.process_data.data_handler import YAMLReader
 
 
 class BaseTest:
@@ -63,8 +62,5 @@ class BaseTest:
         """
         Read data from YAML file and return a Json.
         """
+        return YAMLReader.data_reader("device_data/data_device.yml")
 
-        with open("device_data/data_device.yml") as file:
-            data_device = yaml.safe_load(file)
-            json_data = json.dumps(data_device)
-            return json.loads(json_data)

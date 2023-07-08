@@ -2,6 +2,7 @@ from selenium.common import TimeoutException
 from src.logs.logs_config import logger
 from src.apps.reporter_app.page.report_page.reporter_page_action import ReporterPageAction
 from src.config.test_config.conftest import test_search
+# from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 
 
 class TestReporter:
@@ -42,7 +43,9 @@ class TestReporter:
 
             reporter_page.click_bug_report_text_input()
 
-            reporter_page.insert_bug_report_text('ERROR')
+            data = test_search.read_search_data()
+
+            reporter_page.insert_bug_report_text(data['description'])
             logger.info('Insert text asserted successfully')
 
             reporter_page.click_send_report_button()
