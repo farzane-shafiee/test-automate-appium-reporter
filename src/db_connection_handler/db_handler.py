@@ -34,7 +34,7 @@ class MySQLManager(AbstractDBManager, QueryExecutionMixin):
             self.connection.close()
             self.connection = None
 
-    def execute_query1(self):
+    def execute_saved_log_query(self):
         if not self.connection:
             raise Exception("Not connected to the database.")
         cursor = self.connection.cursor()

@@ -1,7 +1,4 @@
-import keyword
-
-from selenium.common import NoSuchElementException
-
+from selenium.common import TimeoutException
 from src.logs.logs_config import logger
 from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
 from src.config.test_config.base_test import BaseTest
@@ -42,17 +39,17 @@ class TestSearch(BaseTest):
             header_page.wait_visibility_of_element_located_by_xpath(
                 self.wait, header_page.locator['assert_search_result']
             )
-            assert header_page.assert_search_result() is not None, 'Selected label element not found'
+            assert header_page.assert_search_result() is not None, 'Selected Search result element not found'
 
             logger.info('Search assertion was successful')
 
         except Exception as e:
             logger.error(f'Assertion Error {str(e)}')  # Log the assertion error message
-            self.mysql_manager.execute_query1()
+            self.mysql_manager.execute_saved_log_query()
             assert False
             # raise NoSuchElementException  # Reraise the assertion error
 
-        # except TimeoutError as e:
-        #     logger.warning(f'Timeout Error exception: {e}')
-        #     self.mysql_manager.execute_query1()
-        #     assert False
+        except TimeoutException as e:
+            logger.error(f'Timeout Exception: {str(e)}')
+            self.mysql_manager.execute_saved_log_query()
+            assert False
