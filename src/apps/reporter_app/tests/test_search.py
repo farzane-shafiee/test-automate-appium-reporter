@@ -27,11 +27,30 @@ class TestSearch(BaseTest):
             header_page.send_keys_search_input('clock')
             logger.info('Insert the word "clock" in the search box')
 
-            header_page.wait_visibility_of_element_located_by_xpath(
-                self.wait, header_page.locator['assert_search_result']
-            )
+            if len(header_page.find_search_result_list()) >= 1:
+                for item in header_page.find_search_result_list():
+                    if item.text == 'Clock':
+                        logger.info('Ok')
+                        assert True
+                    else:
+                        logger.error('input is not equal result.')
+                        assert False
+            else:
+                logger.error('list is 0.')
+                assert False
 
-            assert header_page.assert_search_result() is not None, 'Search result element not found'
+
+
+
+
+
+
+            # header_page.wait_visibility_of_element_located_by_xpath(
+            #     self.wait, header_page.locator['assert_search_result']
+            # )
+
+            # assert header_page.assert_search_result() is None and\
+            #        header_page.find_search_result_list() < 1, 'Search result element not found'
 
             header_page.click_report_button()
             logger.info('Click the report button Clock app')

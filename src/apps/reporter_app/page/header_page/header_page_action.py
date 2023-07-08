@@ -17,6 +17,10 @@ class HeaderPageAction(BasePage):
     def send_keys_search_input(self, search_input):
         self.driver.find_element(By.ID, self.locator['search_input']).send_keys(search_input)
 
+    def find_search_result_list(self):
+        elements = self.driver.find_elements(By.ID, self.locator['search_result_list'])
+        return elements
+
     def click_report_button(self):
         self.driver.find_element(By.ID, self.locator['report_button']).click()
 

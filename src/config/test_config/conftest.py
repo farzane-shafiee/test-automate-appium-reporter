@@ -1,4 +1,5 @@
 import pytest
+
 from src.apps.reporter_app.tests.test_search import TestSearch
 
 

@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from appium import webdriver
 import yaml
 from selenium.webdriver.support.wait import WebDriverWait
-# from selenium.common.exceptions import ConnectionRefusedError
 from src.db_connection_handler.db_handler import MySQLManager
 from src.logs.logs_config import logger
 
@@ -27,8 +26,8 @@ class BaseTest:
         except Exception as e:
             logger.warning(f"Error connecting to:{e}")
             assert False
-        # cls.driver.implicitly_wait(1)
-        cls.wait = WebDriverWait(cls.driver, 1)
+        cls.driver.implicitly_wait(1)
+        cls.wait = WebDriverWait(cls.driver, 5)
 
     # @classmethod
     # def teardown_class(cls):

@@ -39,3 +39,15 @@ class ReporterPageAction(BasePage):
 
     def click_send_report_button(self):
         self.driver.find_element(By.ID, self.locator['send_report_button']).click()
+
+    def assert_click_dropdown(self):
+        element = self.driver.find_element(By.XPATH, self.locator['bug_report_dropdown_button'])
+        return element
+
+    def assert_file_manager(self):
+        element = self.driver.find_element(By.XPATH, self.locator['assert_file_manager'])
+        return element
+
+    def assert_file_attached(self):
+        element = self.driver.find_element(By.XPATH, self.locator['assert_not_attach_file'])
+        return element
