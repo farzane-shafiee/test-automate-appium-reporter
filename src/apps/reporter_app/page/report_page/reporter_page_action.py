@@ -41,10 +41,6 @@ class ReporterPageAction(BasePage):
     def click_send_report_button(self):
         self.driver.find_element(By.ID, self.locator['send_report_button']).click()
 
-    # def assert_click_dropdown(self):
-    #     element = self.driver.find_element(By.XPATH, self.locator['bug_report_dropdown_button'])
-    #     return element
-
     def assert_file_manager(self):
         element = self.driver.find_element(By.XPATH, self.locator['assert_file_manager'])
         return element
@@ -55,3 +51,5 @@ class ReporterPageAction(BasePage):
 
     def click_success_send_report_message(self):
         self.driver.find_element(By.ID, self.locator['close_message_button']).click()
+
+

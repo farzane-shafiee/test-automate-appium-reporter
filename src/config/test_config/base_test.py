@@ -25,6 +25,7 @@ class BaseTest:
         except Exception as e:
             logger.warning(f"Error connecting to:{e}")
             assert False
+
         cls.driver.implicitly_wait(1)
         cls.wait = WebDriverWait(cls.driver, 20)
 

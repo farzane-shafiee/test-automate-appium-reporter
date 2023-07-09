@@ -63,6 +63,7 @@ class TestReporter:
             logger.info('Click the send button asserted successfully')
 
             reporter_page.wait_visibility_of_element_located_by_id(
+
                 wait, reporter_page.locator['message_text']
             )
             reporter_page.click_success_send_report_message()

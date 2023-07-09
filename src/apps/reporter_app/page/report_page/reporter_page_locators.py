@@ -16,7 +16,8 @@ class ReporterPageLocators:
             "bug_report_text_input": 'com.dariaos.reporter:id/edtTxtReportPage',
             "send_report_button": 'com.dariaos.reporter:id/btnSendReportReportPage',
             "message_text": 'com.dariaos.reporter:id/alertTitle',
-            "close_message_button": 'android:id/button1'
+            "close_message_button": 'android:id/button1',
+
         }
 
     def __getitem__(self, index):
