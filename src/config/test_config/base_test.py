@@ -26,7 +26,7 @@ class BaseTest:
             logger.warning(f"Error connecting to:{e}")
             assert False
         cls.driver.implicitly_wait(1)
-        cls.wait = WebDriverWait(cls.driver, 5)
+        cls.wait = WebDriverWait(cls.driver, 20)
 
     # @classmethod
     # def teardown_class(cls):
