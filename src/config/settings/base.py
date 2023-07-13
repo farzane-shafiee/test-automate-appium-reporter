@@ -1,0 +1,1 @@
+SEARCH_INPUT_DATA_FILE_PATH = "device_data/input_data.yml"
