@@ -19,12 +19,15 @@ class TestMyReports:
             data = self.read_search_data()
             text_report_type = my_reporter_page.get_text_type_of_report()
 
-            len_my_report_list = len(my_reporter_page.my_reports_list())
+            if text_report_type != "":
+                len_my_report_list = len(my_reporter_page.my_reports_list())
 
-            # Getting the number of items from the list of reports
-            if len_my_report_list > 0 and data['report_type'] == text_report_type:
-                logger.info('my reports is saved and success.')
-                assert True
+                # Getting the number of items from the list of reports
+                if len_my_report_list > 0 and data['report_type'] == text_report_type:
+                    logger.info('my reports is saved and success.')
+                    assert True
+            else:
+                assert False
 
         except Exception as e:
             logger.error(f'Assertion Error My Reports {str(e)}')  # Log the assertion error message
