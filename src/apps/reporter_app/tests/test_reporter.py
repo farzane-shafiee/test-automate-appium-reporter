@@ -36,7 +36,7 @@ class TestReporter:
                     get_reports_type_list = reporter_page.get_reports_type_list()
                     continue
 
-            reporter_page.click_attach_file_button()
+            reporter_page.click_attach_file_button()  # open file manager
 
             reporter_page.wait_visibility_of_element_located_by_xpath(
                 wait, reporter_page.locator['assert_file_manager']
@@ -44,7 +44,7 @@ class TestReporter:
             assert reporter_page.assert_file_manager() is not None, 'File manager not found'
             logger.info('Click the attach file button asserted successfully')
 
-            reporter_page.click_image_file()
+            reporter_page.click_image_file()  # select image file from file manager
 
             reporter_page.wait_visibility_of_element_located_by_xpath(
                 wait, reporter_page.locator['assert_not_attach_file']
@@ -56,30 +56,28 @@ class TestReporter:
 
             data = test_search.read_search_data()
 
-            reporter_page.insert_bug_report_text(data['description'])
+            reporter_page.insert_bug_report_text(data['description'])  # send key description
             logger.info('Insert text asserted successfully')
 
             reporter_page.click_send_report_button()
             logger.info('Click the send button asserted successfully')
 
             reporter_page.wait_visibility_of_element_located_by_id(
-
                 wait, reporter_page.locator['message_text']
             )
-            reporter_page.click_success_send_report_message()
+            reporter_page.click_success_send_report_message()  # close send report page
             logger.info('Click on the close button of success message')
 
-            test_search.mysql_manager.execute_saved_log_query()
-
         except Exception as e:
-            logger.error(f'Assertion Error {str(e)}')  # Log the assertion error message
+            logger.error(f'Assertion Error Reporters {str(e)}')  # Log the assertion error message
             test_search.mysql_manager.execute_saved_log_query()
             assert False
 
         except TimeoutException as e:
-            logger.error(f'Timeout Exception  Reporters {str(e)}')
+            logger.error(f'Timeout Exception Reporters {str(e)}')
             test_search.mysql_manager.execute_saved_log_query()
             assert False
 
     def read_search_data(self):
+        """get data from the data_reader function"""
         return YAMLReader.data_reader(SEARCH_INPUT_DATA_FILE_PATH)
