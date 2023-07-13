@@ -20,8 +20,10 @@ class TestMyReports:
             text_report_type = my_reporter_page.get_text_type_of_report()
 
             len_my_report_list = len(my_reporter_page.my_reports_list())
+
+            # Getting the number of items from the list of reports
             if len_my_report_list > 0 and data['report_type'] == text_report_type:
-                logger.info('my reports is success.')
+                logger.info('my reports is saved and success.')
                 assert True
 
         except Exception as e:
