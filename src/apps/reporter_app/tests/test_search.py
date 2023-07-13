@@ -31,7 +31,7 @@ class TestSearch(BaseTest):
             header_page.send_keys_search_input(data['search_input'])
             logger.info(f"Insert the word <{data['search_input']}> in the search box")
 
-            if len(header_page.find_search_result_list()) >= 1:  # condition of not empty result search
+            if len(header_page.find_search_result_list()) >= 1:
                 for items in header_page.find_search_result_list():
                     if data['search_input'].lower() in items.text.lower():
                         logger.info('Search result is find.')
@@ -58,15 +58,14 @@ class TestSearch(BaseTest):
             logger.info('Search assertion was successful')
 
         except Exception as e:
-            logger.error(f'Assertion Error Searches {str(e)}')  # Log the assertion error message
+            logger.error(f'Assertion Error {str(e)}')  # Log the assertion error message
             self.mysql_manager.execute_saved_log_query()
             assert False
 
         except TimeoutException as e:
-            logger.error(f'Timeout Exception Searches {str(e)}')
+            logger.error(f'Timeout Exception: {str(e)}')
             self.mysql_manager.execute_saved_log_query()
             assert False
 
     def read_search_data(self):
-        """get data from the data_reader function"""
         return YAMLReader.data_reader(SEARCH_INPUT_DATA_FILE_PATH)

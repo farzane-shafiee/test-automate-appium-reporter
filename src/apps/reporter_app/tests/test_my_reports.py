@@ -1,5 +1,3 @@
-from selenium.common import TimeoutException
-
 from src.apps.reporter_app.page.my_reports_page.my_reports_page_action import MyReportsPageAction
 from src.config.test_config.conftest import test_reporter
 from src.config.test_config.conftest import test_search
@@ -16,34 +14,25 @@ class TestMyReports:
             my_reporter_page = MyReportsPageAction(test_search.driver)
             test_reporter.reporters(test_search)
 
-            logger.info('My reports page is opened')
+            logger.info('my reports page is opened')
 
             data = self.read_search_data()
             text_report_type = my_reporter_page.get_text_type_of_report()
 
-            if text_report_type != "":  # condition of not empty my_report list
+            if text_report_type != "":
                 len_my_report_list = len(my_reporter_page.my_reports_list())
 
                 # Getting the number of items from the list of reports
                 if len_my_report_list > 0 and data['report_type'] == text_report_type:
-                    logger.info('My reports is saved and success.')
+                    logger.info('my reports is saved and success.')
                     assert True
             else:
-                logger.error('My reports is empty.')
                 assert False
-
-            test_search.mysql_manager.execute_saved_log_query()  # saves logs in mysql database
 
         except Exception as e:
             logger.error(f'Assertion Error My Reports {str(e)}')  # Log the assertion error message
             test_search.mysql_manager.execute_saved_log_query()
             assert False
 
-        except TimeoutException as e:
-            logger.error(f'Timeout Exception My Reports {str(e)}')
-            test_search.mysql_manager.execute_saved_log_query()
-            assert False
-
     def read_search_data(self):
-        """get data from the data_reader function"""
         return YAMLReader.data_reader(SEARCH_INPUT_DATA_FILE_PATH)
