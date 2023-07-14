@@ -1,12 +1,15 @@
+from selenium.common import TimeoutException
 from src.apps.reporter_app.page.my_reports_page.my_reports_page_action import MyReportsPageAction
 from src.utils.process_data.data_handler import YAMLReader
 from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 from src.logs_config.test_logger import logger
-from src.config.test_config.conftest import test_search,test_reporter
+from src.config.test_config.conftest import test_search, test_reporter
 
 
 class TestMyReports:
     def test_my_reports(self, test_search, test_reporter):
+        """ Show my reports page """
+
         wait = test_search.wait
 
         try:
@@ -32,6 +35,11 @@ class TestMyReports:
 
         except Exception as e:
             logger.error(f'Assertion Error My Reports {str(e)}')  # Log the assertion error message
+            test_search.mysql_manager.execute_saved_log_query()
+            assert False
+
+        except TimeoutException as e:
+            logger.error(f'Timeout Exception My Reports: {str(e)}')
             test_search.mysql_manager.execute_saved_log_query()
             assert False
 

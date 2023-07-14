@@ -8,6 +8,8 @@ from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 class TestReporter:
 
     def reporters(self, test_search):
+        """ insert and saved report for app that selected """
+
         wait = test_search.wait
 
         try:
@@ -68,12 +70,12 @@ class TestReporter:
             logger.info('Click on the close button of success message')
 
         except Exception as e:
-            logger.error(f'Assertion Error {str(e)}')  # Log the assertion error message
+            logger.error(f'Assertion Error Reporters {str(e)}')  # Log the assertion error message
             test_search.mysql_manager.execute_saved_log_query()
             assert False
 
         except TimeoutException as e:
-            logger.error(f'Timeout Exception  Reporters {str(e)}')
+            logger.error(f'Timeout Exception Reporters {str(e)}')
             test_search.mysql_manager.execute_saved_log_query()
             assert False
 
