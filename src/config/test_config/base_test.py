@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from appium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from src.db_connection_handler.db_handler import MySQLManager
-from src.logs.logs_config.test_logger import logger
+from src.logs_config.test_logger import logger
 from src.utils.process_data.data_handler import YAMLReader
 
 

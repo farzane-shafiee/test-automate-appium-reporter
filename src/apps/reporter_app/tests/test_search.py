@@ -1,5 +1,5 @@
 from selenium.common import TimeoutException
-from src.logs.logs_config.test_logger import logger
+from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
 from src.config.test_config.base_test import BaseTest
 from src.utils.process_data.data_handler import YAMLReader

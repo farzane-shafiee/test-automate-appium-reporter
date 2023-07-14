@@ -1,7 +1,5 @@
-import time
-
 from selenium.common import TimeoutException, StaleElementReferenceException
-from src.logs.logs_config.test_logger import logger
+from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.report_page.reporter_page_action import ReporterPageAction
 from src.utils.process_data.data_handler import YAMLReader
 from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
@@ -68,8 +66,6 @@ class TestReporter:
             )
             reporter_page.click_success_send_report_message()
             logger.info('Click on the close button of success message')
-
-            test_search.mysql_manager.execute_saved_log_query()
 
         except Exception as e:
             logger.error(f'Assertion Error {str(e)}')  # Log the assertion error message
