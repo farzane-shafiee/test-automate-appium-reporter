@@ -7,6 +7,9 @@ from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 
 class TestReporter:
 
+    def __init__(self):
+        self.OS_DATE_TIME = None
+
     def reporters(self, test_search):
         """ insert and saved report for app that selected """
 
@@ -62,10 +65,13 @@ class TestReporter:
             reporter_page.click_send_report_button()
             logger.info('Click the send button asserted successfully')
 
+            self.OS_DATE_TIME = reporter_page.getting_os_date_time()  # Getting OS date & time
+
             reporter_page.wait_visibility_of_element_located_by_id(
 
                 wait, reporter_page.locator['message_text']
             )
+
             reporter_page.click_success_send_report_message()
             logger.info('Click on the close button of success message')
 

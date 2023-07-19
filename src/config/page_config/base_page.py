@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+import datetime
 
 
 class BasePage:
@@ -48,3 +49,9 @@ class BasePage:
                 (By.ID, element)
             )
         )
+
+    @staticmethod
+    def getting_os_date_time():
+        current_datetime = datetime.datetime.now()
+        formatted_datetime = current_datetime.strftime('%Y-%m-%d %H')
+        return formatted_datetime
