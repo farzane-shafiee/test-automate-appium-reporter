@@ -6,11 +6,11 @@ from src.utils.process_data.data_handler import YAMLReader
 from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 
 
-class TestSearch(BaseTest):
+class TestCrossButtonSearchBox(BaseTest):
 
-    def searches(self):
+    def test_cross_button_search_box(self):
         """
-        Search box test.
+        Click the cross button in Search box and close search box.
         """
 
         header_page = HeaderPageAction(self.driver)
@@ -31,39 +31,29 @@ class TestSearch(BaseTest):
             header_page.send_keys_search_input(data['search_input'])
             logger.info(f"Insert the word <{data['search_input']}> in the search box")
 
-            if len(header_page.find_search_result_list()) >= 1:
-                for items in header_page.find_search_result_list():
-                    if data['search_input'].lower() in items.text.lower():
-                        logger.info('Search result is find.')
-                        assert True
-                    else:
-                        logger.error(f'search result: {items.text.lower()}, data input is not equal search result.')
-                        assert False
-            else:
-                logger.error('Search result is empty.')
-                assert False
+            header_page.click_cross_button_search_box()
 
             header_page.wait_visibility_of_element_located_by_xpath(
-                self.wait, header_page.locator['assert_search_result']
+                self.wait, header_page.locator['assert_cross_button']
             )
+            logger.info('cross button is clicked and clear search input')
 
-            header_page.click_report_button()
-            logger.info('Click the report button Clock app')
+            header_page.click_cross_button_search_box()
 
-            header_page.wait_visibility_of_element_located_by_xpath(
-                self.wait, header_page.locator['assert_search_result']
+            header_page.wait_visibility_of_element_located_by_id(
+                self.wait, header_page.locator['search_button']
             )
-            assert header_page.assert_search_result() is not None, 'Selected Search result element not found'
+            logger.info('cross button is clicked and closed search box')
 
-            logger.info('Search assertion was successful')
+            self.mysql_manager.execute_saved_log_query()
 
         except Exception as e:
-            logger.error(f'Assertion Error Searches {str(e)}')  # Log the assertion error message
+            logger.error(f'Assertion Error Cross Button {str(e)}')  # Log the assertion error message
             self.mysql_manager.execute_saved_log_query()
             assert False
 
         except TimeoutException as e:
-            logger.error(f'Timeout Exception Searches: {str(e)}')
+            logger.error(f'Timeout Exception Cross Button: {str(e)}')
             self.mysql_manager.execute_saved_log_query()
             assert False
 
