@@ -45,11 +45,13 @@ class ReporterPageAction(BasePage):
         element = self.driver.find_element(By.XPATH, self.locator['assert_file_manager'])
         return element
 
-    def assert_file_attached(self):
+    def assert_file_not_attached(self):
         element = self.driver.find_element(By.XPATH, self.locator['assert_not_attach_file'])
         return element
 
     def click_success_send_report_message(self):
         self.driver.find_element(By.ID, self.locator['close_message_button']).click()
 
-
+    def assert_file_attached(self):
+        element = self.driver.find_element(By.XPATH, self.locator['assert_attach_file'])
+        return element
