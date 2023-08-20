@@ -31,6 +31,7 @@ class TestMyReports:
                     app_date_time = my_reporter_page.getting_date_time_my_report()
                     os_date_time = test_reporter.OS_DATE_TIME
 
+                    # Test OS date/time with app date/time
                     if os_date_time == app_date_time:
                         logger.info('Date & Time of my report is recorded correctly')
                         assert True
