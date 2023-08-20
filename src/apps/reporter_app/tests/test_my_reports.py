@@ -14,7 +14,10 @@ class TestMyReports:
 
         try:
             my_reporter_page = MyReportsPageAction(test_search.driver)
-            test_reporter.reporters(test_search)
+            test_reporter.select_type_report(test_search)
+            test_reporter.insert_attach(test_search)
+            test_reporter.insert_text_report(test_search)
+            test_reporter.getting_os_date_time(test_search)
 
             logger.info('my reports page is opened')
 
