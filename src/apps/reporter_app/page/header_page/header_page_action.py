@@ -35,3 +35,12 @@ class HeaderPageAction(BasePage):
     def click_cross_button_search_box(self):
         self.driver.find_element(By.ID, self.locator['cross_button']).click()
 
+    def get_home_page_title(self):
+        element = self.driver.find_element(By.ID, self.locator['home_page_title'])
+        return element
+
+    def click_device_tab(self):
+        self.driver.find_element(By.ID, self.locator['device_tab']).click()
+
+    def click_app_tab(self):
+        self.driver.find_element(By.ID, self.locator['app_tab']).click()

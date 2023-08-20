@@ -12,12 +12,12 @@ class ReporterPageLocators:
             "attach_file_button": 'com.dariaos.reporter:id/txt_attach_report_page',
             "assert_file_manager": '//*[@text="Recent"]',
             "image_file": 'com.android.documentsui:id/icon_thumb',
-            "assert_not_attach_file": '//*[not(@text="Attach file")]',
+            "assert_not_attach_file": '//*[not(@text="Attach File")]',
             "bug_report_text_input": 'com.dariaos.reporter:id/edtTxtReportPage',
             "send_report_button": 'com.dariaos.reporter:id/btnSendReportReportPage',
             "message_text": 'com.dariaos.reporter:id/alertTitle',
             "close_message_button": 'android:id/button1',
-
+            "assert_attach_file": '//*[@text="Attach File"]',
         }
 
     def __getitem__(self, index):
