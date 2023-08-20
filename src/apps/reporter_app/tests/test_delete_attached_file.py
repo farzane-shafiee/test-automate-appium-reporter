@@ -18,6 +18,7 @@ class TestDeleteAttachment:
             test_reporter.insert_attach(test_search)
 
             # Delete attached file
+            logger.info('Deleting attach file test is running')
             reporter_page.click_attach_file_button()
 
             assert reporter_page.assert_file_attached() is not None, 'File not deleted'
@@ -25,7 +26,7 @@ class TestDeleteAttachment:
             reporter_page.wait_visibility_of_element_located_by_xpath(
                 wait, reporter_page.locator['assert_attach_file']
             )
-            logger.info('Deleting image asserted successfully')
+            logger.info('Deleting attach file is successfully')
 
             test_search.mysql_manager.execute_saved_log_query()
 

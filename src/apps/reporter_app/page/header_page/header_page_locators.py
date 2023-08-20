@@ -13,6 +13,9 @@ class HeaderPageLocators:
             "cross_button": 'com.dariaos.reporter:id/search_close_btn',
             "assert_cross_button": '//*[@text="Search app name"]',
 
+            "home_page_title": 'com.dariaos.reporter:id/txt_title',
+            "device_tab": 'com.dariaos.reporter:id/btn_software',
+            "app_tab": 'com.dariaos.reporter:id/btn_apps'
         }
 
     def __getitem__(self, index):
