@@ -10,7 +10,10 @@ class MyReportsPageLocators:
             "assert_report_type_label": 'com.dariaos.reporter:id/txt_report_type_report_row',
             "message_button": 'com.dariaos.reporter:id/img_message_report_row',
             "message_label": 'android:id/alertTitle',
-            "date_time_label": 'com.dariaos.reporter:id/txt_report_id_report_row'
+            "date_time_label": 'com.dariaos.reporter:id/txt_report_id_report_row',
+            "dialog_text_button": 'com.dariaos.reporter:id/img_message_report_row',
+            "dialog_text_frame_layout": 'android:id/content',
+            "dialog_text_message": 'android:id/message',
         }
 
     def __getitem__(self, index):
