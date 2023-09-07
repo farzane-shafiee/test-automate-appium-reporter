@@ -44,3 +44,9 @@ class HeaderPageAction(BasePage):
 
     def click_app_tab(self):
         self.driver.find_element(By.ID, self.locator['app_tab']).click()
+
+    def click_more_options_button(self):
+        self.driver.find_element(By.XPATH, self.locator['more_options_button']).click()
+
+    def click_my_reports_button(self):
+        self.driver.find_element(By.ID, self.locator['my_reports_button']).click()

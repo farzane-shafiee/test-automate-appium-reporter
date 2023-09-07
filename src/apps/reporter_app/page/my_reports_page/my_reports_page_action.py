@@ -17,6 +17,14 @@ class MyReportsPageAction(BasePage):
 
     def get_text_type_of_report(self):
         text_element = self.driver.find_element(By.ID, self.locator['assert_report_type_label']).text
+        return text_element.lower()
+
+    def get_text_name_of_report(self):
+        text_element = self.driver.find_element(By.ID, self.locator['assert_report_name_label']).text
+        return text_element.lower()
+
+    def get_text_my_report_page(self):
+        text_element = self.driver.find_element(By.XPATH, self.locator['assert_my_reports_label']).text
         return text_element
 
     def getting_date_time_my_report(self):

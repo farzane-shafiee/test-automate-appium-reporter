@@ -15,7 +15,11 @@ class HeaderPageLocators:
 
             "home_page_title": 'com.dariaos.reporter:id/txt_title',
             "device_tab": 'com.dariaos.reporter:id/btn_software',
-            "app_tab": 'com.dariaos.reporter:id/btn_apps'
+            "app_tab": 'com.dariaos.reporter:id/btn_apps',
+
+            "more_options_button": '//android.widget.ImageView[@content-desc="More options"]',
+            "my_reports_button": 'com.dariaos.reporter:id/title',
+
         }
 
     def __getitem__(self, index):
