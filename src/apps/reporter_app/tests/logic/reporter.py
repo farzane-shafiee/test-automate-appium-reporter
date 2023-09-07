@@ -10,11 +10,10 @@ class TestReporter:
     def __init__(self):
         self.OS_DATE_TIME = None
 
-    def select_type_report(self, test_search):
+    def select_type_report_drop_down(self, test_search):
         """ insert and saved report for app that selected """
 
         reporter_page = ReporterPageAction(test_search.driver)
-        test_search.searches()
 
         reporter_page.click_report_type_dropdown()
         logger.info('Drop down is selected')
@@ -25,7 +24,7 @@ class TestReporter:
         # find report type item in list of drop down
         for item in get_reports_type_list:
             try:
-                if item.text == data['report_type']:
+                if item.text.lower() == data['report_type']:
                     item.click()
                     logger.info('report type selected is successfully')
                 else:

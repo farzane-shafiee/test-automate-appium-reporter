@@ -14,7 +14,11 @@ class TestCorrectnessOfReportedText:
         wait = test_search.wait
         try:
             my_reporter_page = MyReportsPageAction(test_search.driver)
-            test_reporter.select_type_report(test_search)
+
+            test_search.searches()
+
+            test_reporter.select_type_report_drop_down(test_search)
+
             test_reporter.insert_attach(test_search)
             test_reporter.insert_text_report(test_search)
             test_reporter.getting_os_date_time(test_search)
