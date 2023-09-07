@@ -8,14 +8,23 @@ from src.config.test_config.conftest import test_search, test_reporter
 
 class TestDeleteAttachment:
 
-    def test_deleting_attached_file(self, test_search, test_reporter):
+    def test_deleting_and_show_attached_file(self, test_search, test_reporter):
         """ Deleting attachment file in reporter page """
 
         wait = test_search.wait
         try:
             reporter_page = ReporterPageAction(test_search.driver)
-            test_reporter.select_type_report(test_search)
+
+            test_search.searches()
+
+            test_reporter.select_type_report_drop_down(test_search)
             test_reporter.insert_attach(test_search)
+
+            # Show thumb file attached
+            reporter_page.wait_visibility_of_element_located_by_id(
+                wait, reporter_page.locator['thumb_file']
+            )
+            logger.info('Show attach file thumb is successfully')
 
             # Delete attached file
             logger.info('Deleting attach file test is running')

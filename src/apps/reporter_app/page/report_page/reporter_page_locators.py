@@ -18,6 +18,7 @@ class ReporterPageLocators:
             "message_text": 'com.dariaos.reporter:id/alertTitle',
             "close_message_button": 'android:id/button1',
             "assert_attach_file": '//*[@text="Attach File"]',
+            "thumb_file": 'com.dariaos.reporter:id/img'
         }
 
     def __getitem__(self, index):
