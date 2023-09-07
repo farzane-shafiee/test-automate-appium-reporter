@@ -8,6 +8,9 @@ from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 
 class TestSearch(BaseTest):
 
+    def __init__(self):
+        self.item = None
+
     def searches(self):
         """
         Search box test.
@@ -32,28 +35,25 @@ class TestSearch(BaseTest):
             logger.info(f"Insert the word <{data['search_input']}> in the search box")
 
             if len(header_page.find_search_result_list()) >= 1:
-                for items in header_page.find_search_result_list():
-                    if data['search_input'].lower() in items.text.lower():
-                        logger.info('Search result is find.')
-                        assert True
+
+                for item in header_page.find_search_result_list():
+                    if data['search_input'].lower() in item.text.lower():
+                        logger.error(f'search result: {item.text.lower()}, data input is equal search result.')
+                        break
                     else:
-                        logger.error(f'search result: {items.text.lower()}, data input is not equal search result.')
-                        assert False
+                        logger.error(f'search result: {item.text.lower()}, data input is not equal search result.')
+                    continue
             else:
                 logger.error('Search result is empty.')
                 assert False
 
-            header_page.wait_visibility_of_element_located_by_xpath(
-                self.wait, header_page.locator['assert_search_result']
-            )
-
             header_page.click_report_button()
-            logger.info('Click the report button Clock app')
+            logger.info(f"Click the report button {data['search_input'].lower()} app")
 
-            header_page.wait_visibility_of_element_located_by_xpath(
-                self.wait, header_page.locator['assert_search_result']
+            header_page.wait_visibility_of_element_located_by_id(
+                self.wait, header_page.locator['assert_report_page_label']
             )
-            assert header_page.assert_search_result() is not None, 'Selected Search result element not found'
+            assert header_page.get_report_page_label() is not None, 'Selected Search result element not found'
 
             logger.info('Search assertion was successful')
 

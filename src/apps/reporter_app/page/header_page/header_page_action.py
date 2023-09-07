@@ -17,8 +17,12 @@ class HeaderPageAction(BasePage):
     def send_keys_search_input(self, search_input):
         self.driver.find_element(By.ID, self.locator['search_input']).send_keys(search_input)
 
+    def find_child_element(self, item):
+        elements = item.find_elements(By.XPATH, "/*")
+        return elements
+
     def find_search_result_list(self):
-        elements = self.driver.find_elements(By.ID, self.locator['search_result_list'])
+        elements = (self.driver.find_elements(By.XPATH, self.locator['search_result_list']))
         return elements
 
     def click_report_button(self):
@@ -28,8 +32,8 @@ class HeaderPageAction(BasePage):
         element = self.driver.find_element(By.ID, self.locator['search_button'])
         return element
 
-    def assert_search_result(self):
-        search_result = self.driver.find_element(By.XPATH, self.locator['assert_search_result'])
+    def get_report_page_label(self):
+        search_result = self.driver.find_element(By.ID, self.locator['assert_report_page_label'])
         return search_result
 
     def click_cross_button_search_box(self):
