@@ -1,6 +1,6 @@
 import pytest
-from src.apps.reporter_app.tests.test_search import TestSearch
-from src.apps.reporter_app.tests.test_reporter import TestReporter
+from src.apps.reporter_app.tests.logic.search import TestSearch
+from src.apps.reporter_app.tests.logic.reporter import TestReporter
 
 
 @pytest.fixture()

@@ -17,19 +17,12 @@ class HeaderPageAction(BasePage):
     def send_keys_search_input(self, search_input):
         self.driver.find_element(By.ID, self.locator['search_input']).send_keys(search_input)
 
-    def find_search_result_list(self):
-        elements = self.driver.find_elements(By.ID, self.locator['search_result_list'])
-        return elements
-
-    def click_report_button(self):
-        self.driver.find_element(By.ID, self.locator['report_button']).click()
-
     def assert_search_button(self):
         element = self.driver.find_element(By.ID, self.locator['search_button'])
         return element
 
-    def assert_search_result(self):
-        search_result = self.driver.find_element(By.XPATH, self.locator['assert_search_result'])
+    def get_report_page_label(self):
+        search_result = self.driver.find_element(By.ID, self.locator['assert_report_page_label'])
         return search_result
 
     def click_cross_button_search_box(self):
@@ -44,3 +37,9 @@ class HeaderPageAction(BasePage):
 
     def click_app_tab(self):
         self.driver.find_element(By.ID, self.locator['app_tab']).click()
+
+    def click_more_options_button(self):
+        self.driver.find_element(By.XPATH, self.locator['more_options_button']).click()
+
+    def click_my_reports_button(self):
+        self.driver.find_element(By.ID, self.locator['my_reports_button']).click()

@@ -55,3 +55,4 @@ class ReporterPageAction(BasePage):
     def assert_file_attached(self):
         element = self.driver.find_element(By.XPATH, self.locator['assert_attach_file'])
         return element
+

@@ -1,4 +1,5 @@
 from selenium.common import StaleElementReferenceException
+from src.apps.reporter_app.page.my_reports_page.my_reports_page_action import MyReportsPageAction
 from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.report_page.reporter_page_action import ReporterPageAction
 from src.utils.process_data.data_handler import YAMLReader
@@ -10,11 +11,10 @@ class TestReporter:
     def __init__(self):
         self.OS_DATE_TIME = None
 
-    def select_type_report(self, test_search):
+    def select_type_report_drop_down(self, test_search):
         """ insert and saved report for app that selected """
 
         reporter_page = ReporterPageAction(test_search.driver)
-        test_search.searches()
 
         reporter_page.click_report_type_dropdown()
         logger.info('Drop down is selected')
@@ -25,7 +25,7 @@ class TestReporter:
         # find report type item in list of drop down
         for item in get_reports_type_list:
             try:
-                if item.text == data['report_type']:
+                if item.text.lower() == data['report_type']:
                     item.click()
                     logger.info('report type selected is successfully')
                 else:
@@ -74,12 +74,33 @@ class TestReporter:
         # Getting OS date & time
         self.OS_DATE_TIME = reporter_page.getting_os_date_time()
 
-        reporter_page.wait_visibility_of_element_located_by_id(
-            test_search.wait, reporter_page.locator['message_text']
-        )
+    def T1_check_name_type_time_in_my_report_page(self, test_search):
+        """
+        Checking my report list
+        """
 
-        reporter_page.click_success_send_report_message()
-        logger.info('Click on the close button of success message')
+        my_reporter_page = MyReportsPageAction(test_search.driver)
+        data = self.read_search_data()
+
+        if len(my_reporter_page.my_reports_list()) >= 1:
+            logger.info('List is exist.')
+
+            # Comparison type
+            assert data['report_type'].lower() == my_reporter_page.get_text_type_of_report()
+
+            # Comparison OS date/time with app date/time
+            app_date_time = my_reporter_page.getting_date_time_my_report()
+            os_date_time = self.OS_DATE_TIME
+            assert os_date_time == app_date_time, 'Date & Time of my report is wrong'
+
+            # Comparison name
+            assert data['search_input'].lower() == my_reporter_page.get_text_name_of_report
+
+            logger.info('my reports is saved and success.')
+
+        else:
+            logger.error('Search result is empty.')
+            assert False
 
     def read_search_data(self):
         return YAMLReader.data_reader(SEARCH_INPUT_DATA_FILE_PATH)

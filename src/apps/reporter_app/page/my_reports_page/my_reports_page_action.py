@@ -12,12 +12,23 @@ class MyReportsPageAction(BasePage):
         super().__init__(driver)
 
     def my_reports_list(self):
-        element = self.driver.find_elements(By.ID, self.locator['my_reports_list'])
-        return element
+        if self.driver.find_elements(By.XPATH, self.locator['my_reports_list']):
+            element = self.driver.find_elements(By.XPATH, self.locator['my_reports_list'])
+            return element
+        else:
+            return ""
 
     def get_text_type_of_report(self):
-        text_element = self.driver.find_element(By.ID, self.locator['assert_report_type_label']).text
-        return text_element
+        text_element = self.driver.find_element(By.XPATH, self.locator['assert_report_type_label']).text
+        return text_element.lower()
+
+    def get_text_name_of_report(self):
+        text_element = self.driver.find_element(By.ID, self.locator['assert_report_name_label']).text
+        return text_element.lower()
+
+    def get_text_my_report_page(self):
+        text_element = self.driver.find_element(By.XPATH, self.locator['assert_my_reports_label']).text
+        return text_element.lower()
 
     def getting_date_time_my_report(self):
         text = self.driver.find_element(By.ID, self.locator['date_time_label']).text
