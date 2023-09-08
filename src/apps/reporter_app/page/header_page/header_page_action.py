@@ -17,13 +17,12 @@ class HeaderPageAction(BasePage):
     def send_keys_search_input(self, search_input):
         self.driver.find_element(By.ID, self.locator['search_input']).send_keys(search_input)
 
-    def find_child_element(self, item):
-        elements = item.find_elements(By.XPATH, "/*")
-        return elements
-
     def find_search_result_list(self):
-        elements = (self.driver.find_elements(By.XPATH, self.locator['search_result_list']))
-        return elements
+        if self.driver.find_elements(By.XPATH, self.locator['search_result_list']):
+            elements = self.driver.find_elements(By.XPATH, self.locator['search_result_list'])
+            return elements
+        else:
+            return False
 
     def click_report_button(self):
         self.driver.find_element(By.ID, self.locator['report_button']).click()

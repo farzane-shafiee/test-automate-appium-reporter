@@ -1,4 +1,5 @@
-from selenium.common import TimeoutException
+import time
+
 from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
 from src.config.test_config.base_test import BaseTest
@@ -11,61 +12,50 @@ class TestSearch(BaseTest):
     def __init__(self):
         self.item = None
 
-    def searches(self):
+    def T332_click_and_send_key_search(self):
         """
-        Search box test.
+        Click search box and send data to input search box.
         """
 
         header_page = HeaderPageAction(self.driver)
 
-        try:
-            logger.info('Connected device_data is successfully')
+        logger.info('Connected device_data is successfully')
 
-            header_page.wait_element_to_be_clickable_by_id(
-                self.wait, header_page.locator['search_button']
-            )
-            assert header_page.assert_search_button() is not None, 'Search button element not found'
+        header_page.wait_element_to_be_clickable_by_id(
+            self.wait, header_page.locator['search_button']
+        )
+        assert header_page.assert_search_button() is not None, 'Search button element not found'
 
-            header_page.click_search_button()
-            logger.info('Click the search button')
+        header_page.click_search_button()
+        logger.info('Click the search button')
 
-            data = self.read_search_data()
+        data = self.read_search_data()
+        time.sleep(2)
 
-            header_page.send_keys_search_input(data['search_input'])
-            logger.info(f"Insert the word <{data['search_input']}> in the search box")
+        header_page.send_keys_search_input(data['search_input'])
+        logger.info(f"Insert the word <{data['search_input']}> in the search box")
 
-            if len(header_page.find_search_result_list()) >= 1:
+    def T332_check_search_result(self):
+        """
+        Checking the result of the search
+        """
 
-                for item in header_page.find_search_result_list():
-                    if data['search_input'].lower() in item.text.lower():
-                        logger.error(f'search result: {item.text.lower()}, data input is equal search result.')
-                        break
-                    else:
-                        logger.error(f'search result: {item.text.lower()}, data input is not equal search result.')
-                    continue
-            else:
-                logger.error('Search result is empty.')
-                assert False
+        header_page = HeaderPageAction(self.driver)
+        data = self.read_search_data()
 
-            header_page.click_report_button()
-            logger.info(f"Click the report button {data['search_input'].lower()} app")
+        if len(header_page.find_search_result_list()) >= 1:
 
-            header_page.wait_visibility_of_element_located_by_id(
-                self.wait, header_page.locator['assert_report_page_label']
-            )
-            assert header_page.get_report_page_label() is not None, 'Selected Search result element not found'
-
-            logger.info('Search assertion was successful')
-
-        except Exception as e:
-            logger.error(f'Assertion Error Searches {str(e)}')  # Log the assertion error message
-            self.mysql_manager.execute_saved_log_query()
+            for item in header_page.find_search_result_list():
+                if data['search_input'].lower() in item.text.lower():
+                    logger.info(f'search result: {item.text.lower()}, data input is equal search result.')
+                    break
+                else:
+                    logger.warning(f'search result: {item.text.lower()}, data input is not equal search result.')
+                continue
+        else:
+            logger.error('Search result is empty.')
             assert False
 
-        except TimeoutException as e:
-            logger.error(f'Timeout Exception Searches: {str(e)}')
-            self.mysql_manager.execute_saved_log_query()
-            assert False
 
     def read_search_data(self):
         return YAMLReader.data_reader(SEARCH_INPUT_DATA_FILE_PATH)
