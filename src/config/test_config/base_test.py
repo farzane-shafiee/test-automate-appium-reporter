@@ -27,7 +27,7 @@ class BaseTest:
             assert False
 
         cls.driver.implicitly_wait(5)
-        cls.wait = WebDriverWait(cls.driver, timeout=50)
+        cls.wait = WebDriverWait(cls.driver, 50)
 
     # @classmethod
     # def teardown_class(cls):

@@ -1,6 +1,6 @@
 from selenium.common import TimeoutException
-from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
 from src.apps.reporter_app.page.landing_page.landing_page_action import LandingPageAction
+from src.apps.reporter_app.page.report_page.reporter_page_action import ReporterPageAction
 from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.my_reports_page.my_reports_page_action import MyReportsPageAction
 from src.utils.process_data.data_handler import YAMLReader
@@ -17,6 +17,7 @@ class TestCorrectnessOfReportedText:
         try:
             my_reporter_page = MyReportsPageAction(test_search.driver)
             landing_page = LandingPageAction(test_search.driver)
+            reporter_page = ReporterPageAction(test_search.driver)
 
             data = self.read_search_data()
             test_search.T332_click_and_send_key_search()
@@ -32,7 +33,13 @@ class TestCorrectnessOfReportedText:
 
                 test_reporter.insert_attach(test_search)
                 test_reporter.insert_text_report(test_search)
-                test_reporter.getting_os_date_time(test_search)
+
+                reporter_page.wait_visibility_of_element_located_by_id(
+                    test_search.wait, reporter_page.locator['message_text']
+                )
+
+                reporter_page.click_success_send_report_message()
+                logger.info('Click on the close button of success message')
 
                 # Correctness of the reported text
                 # Click on dialog button
