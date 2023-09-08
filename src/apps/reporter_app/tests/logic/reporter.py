@@ -1,4 +1,5 @@
 from selenium.common import StaleElementReferenceException
+from src.apps.reporter_app.page.my_reports_page.my_reports_page_action import MyReportsPageAction
 from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.report_page.reporter_page_action import ReporterPageAction
 from src.utils.process_data.data_handler import YAMLReader
@@ -72,6 +73,34 @@ class TestReporter:
 
         # Getting OS date & time
         self.OS_DATE_TIME = reporter_page.getting_os_date_time()
+
+    def T1_check_name_type_time_in_my_report_page(self, test_search):
+        """
+        Checking my report list
+        """
+
+        my_reporter_page = MyReportsPageAction(test_search.driver)
+        data = self.read_search_data()
+
+        if len(my_reporter_page.my_reports_list()) >= 1:
+            logger.info('List is exist.')
+
+            # Comparison type
+            assert data['report_type'].lower() == my_reporter_page.get_text_type_of_report()
+
+            # Comparison OS date/time with app date/time
+            app_date_time = my_reporter_page.getting_date_time_my_report()
+            os_date_time = self.OS_DATE_TIME
+            assert os_date_time == app_date_time, 'Date & Time of my report is wrong'
+
+            # Comparison name
+            assert data['search_input'].lower() == my_reporter_page.get_text_name_of_report
+
+            logger.info('my reports is saved and success.')
+
+        else:
+            logger.error('Search result is empty.')
+            assert False
 
     def read_search_data(self):
         return YAMLReader.data_reader(SEARCH_INPUT_DATA_FILE_PATH)
