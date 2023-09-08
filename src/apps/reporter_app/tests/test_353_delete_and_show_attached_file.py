@@ -1,5 +1,4 @@
 from selenium.common import TimeoutException
-
 from src.apps.reporter_app.page.landing_page.landing_page_action import LandingPageAction
 from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.report_page.reporter_page_action import ReporterPageAction
@@ -28,7 +27,6 @@ class TestDeleteAttachment:
                 assert True
             else:
                 landing_page.click_report_button()
-                test_reporter.select_type_report_drop_down(test_search)
                 test_reporter.insert_attach(test_search)
 
                 # Show thumb file attached
