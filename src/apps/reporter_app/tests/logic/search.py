@@ -1,5 +1,4 @@
 import time
-
 from src.apps.reporter_app.page.landing_page.landing_page_action import LandingPageAction
 from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
@@ -31,7 +30,7 @@ class TestSearch(BaseTest):
         logger.info('Click the search button')
 
         data = self.read_search_data()
-        time.sleep(2)
+        time.sleep(1)
 
         header_page.send_keys_search_input(data['search_input'])
         logger.info(f"Insert the word <{data['search_input']}> in the search box")
