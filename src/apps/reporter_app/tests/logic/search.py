@@ -1,5 +1,6 @@
 import time
 
+from src.apps.reporter_app.page.landing_page.landing_page_action import LandingPageAction
 from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
 from src.config.test_config.base_test import BaseTest
@@ -40,12 +41,12 @@ class TestSearch(BaseTest):
         Checking the result of the search
         """
 
-        header_page = HeaderPageAction(self.driver)
+        landing_page = LandingPageAction(self.driver)
         data = self.read_search_data()
 
-        if len(header_page.find_search_result_list()) >= 1:
+        if len(landing_page.find_search_result_list()) >= 1:
 
-            for item in header_page.find_search_result_list():
+            for item in landing_page.find_search_result_list():
                 if data['search_input'].lower() in item.text.lower():
                     logger.info(f'search result: {item.text.lower()}, data input is equal search result.')
                     break

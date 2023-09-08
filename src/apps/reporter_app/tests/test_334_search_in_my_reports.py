@@ -1,4 +1,6 @@
 from selenium.common import TimeoutException
+
+from src.apps.reporter_app.page.landing_page.landing_page_action import LandingPageAction
 from src.apps.reporter_app.page.my_reports_page.my_reports_page_action import MyReportsPageAction
 from src.logs_config.test_logger import logger
 from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
@@ -15,6 +17,7 @@ class TestSearch:
         """
         wait = test_search.wait
         header_page = HeaderPageAction(test_search.driver)
+        landing_page = LandingPageAction(test_search.driver)
         my_reporter_page = MyReportsPageAction(test_search.driver)
 
         try:
@@ -31,7 +34,7 @@ class TestSearch:
 
             data = self.read_search_data()
 
-            if header_page.find_search_result_list() is False:
+            if landing_page.find_search_result_list() == "":
                 logger.warning(f"the word <{data['search_input']}> not found in the search.")
                 assert True
             else:
