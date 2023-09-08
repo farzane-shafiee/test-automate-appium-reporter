@@ -52,6 +52,9 @@ class TestSaveReports:
                 # Condition not empty my reports list
                 assert my_reporter_page.my_reports_list() != "", "My reports list is empty."
 
+                # Checking name and type and date/time saved report
+                test_reporter.T344_T340_check_name_type_time_in_my_report_page()
+
                 test_search.mysql_manager.execute_saved_log_query()
 
         except Exception as e:
