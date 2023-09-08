@@ -8,7 +8,7 @@ from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 
 class TestSwitchTab(BaseTest):
 
-    def test_switch_tab(self):
+    def test_330_switch_tab(self):
         """
         switch tab Device and App action is tested
         """
