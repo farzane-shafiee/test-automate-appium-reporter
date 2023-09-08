@@ -1,5 +1,4 @@
 from selenium.common import TimeoutException
-
 from src.apps.reporter_app.page.landing_page.landing_page_action import LandingPageAction
 from src.apps.reporter_app.page.my_reports_page.my_reports_page_action import MyReportsPageAction
 from src.logs_config.test_logger import logger
@@ -9,7 +8,7 @@ from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 from src.config.test_config.conftest import test_search
 
 
-class TestSearch:
+class TestSearchMyReports:
 
     def test_334_search_in_my_reports(self, test_search):
         """
