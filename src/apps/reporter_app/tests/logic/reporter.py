@@ -73,12 +73,5 @@ class TestReporter:
         # Getting OS date & time
         self.OS_DATE_TIME = reporter_page.getting_os_date_time()
 
-        reporter_page.wait_visibility_of_element_located_by_id(
-            test_search.wait, reporter_page.locator['message_text']
-        )
-
-        reporter_page.click_success_send_report_message()
-        logger.info('Click on the close button of success message')
-
     def read_search_data(self):
         return YAMLReader.data_reader(SEARCH_INPUT_DATA_FILE_PATH)

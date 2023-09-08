@@ -8,7 +8,7 @@ from src.config.settings.base import SEARCH_INPUT_DATA_FILE_PATH
 
 class TestCrossButtonSearchBox(BaseTest):
 
-    def test_cross_button_search_box(self):
+    def test_333_cross_button_search_box(self):
         """
         Click the cross button in Search box and close search box.
         """
