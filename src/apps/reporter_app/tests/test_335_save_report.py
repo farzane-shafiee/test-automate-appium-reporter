@@ -32,6 +32,10 @@ class TestSaveReports:
                 test_reporter.insert_attach(test_search)
 
                 test_reporter.insert_text_report(test_search)
+
+                reporter_page.click_send_report_button()
+                logger.info('Click the send button asserted successfully')
+
                 test_reporter.getting_os_date_time(test_search)  # Getting OS date time
 
                 reporter_page.wait_visibility_of_element_located_by_id(
@@ -53,7 +57,7 @@ class TestSaveReports:
                 assert my_reporter_page.my_reports_list() != "", "My reports list is empty."
 
                 # Checking name and type and date/time saved report
-                test_reporter.T344_T340_check_name_type_time_in_my_report_page()
+                test_reporter.T344_T340_check_name_type_time_in_my_report_page(test_search)
 
                 test_search.mysql_manager.execute_saved_log_query()
 

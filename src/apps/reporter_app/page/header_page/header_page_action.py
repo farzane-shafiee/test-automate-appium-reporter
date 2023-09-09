@@ -21,10 +21,6 @@ class HeaderPageAction(BasePage):
         element = self.driver.find_element(By.ID, self.locator['search_button'])
         return element
 
-    def get_report_page_label(self):
-        search_result = self.driver.find_element(By.ID, self.locator['assert_report_page_label'])
-        return search_result
-
     def click_cross_button_search_box(self):
         self.driver.find_element(By.ID, self.locator['cross_button']).click()
 

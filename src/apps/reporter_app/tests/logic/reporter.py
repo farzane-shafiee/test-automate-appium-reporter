@@ -65,9 +65,6 @@ class TestReporter:
         reporter_page.insert_bug_report_text(data['description'])  # test for characters limit to be write
         logger.info('Insert text asserted successfully')
 
-        reporter_page.click_send_report_button()
-        logger.info('Click the send button asserted successfully')
-
     def getting_os_date_time(self, test_search):
         reporter_page = ReporterPageAction(test_search.driver)
 
