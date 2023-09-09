@@ -34,6 +34,9 @@ class TestCorrectnessOfReportedText:
                 test_reporter.insert_attach(test_search)
                 test_reporter.insert_text_report(test_search)
 
+                reporter_page.click_send_report_button()
+                logger.info('Click the send button asserted successfully')
+
                 reporter_page.wait_visibility_of_element_located_by_id(
                     test_search.wait, reporter_page.locator['message_text']
                 )

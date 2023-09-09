@@ -65,16 +65,13 @@ class TestReporter:
         reporter_page.insert_bug_report_text(data['description'])  # test for characters limit to be write
         logger.info('Insert text asserted successfully')
 
-        reporter_page.click_send_report_button()
-        logger.info('Click the send button asserted successfully')
-
     def getting_os_date_time(self, test_search):
         reporter_page = ReporterPageAction(test_search.driver)
 
         # Getting OS date & time
         self.OS_DATE_TIME = reporter_page.getting_os_date_time()
 
-    def T1_check_name_type_time_in_my_report_page(self, test_search):
+    def T344_T340_check_name_type_time_in_my_report_page(self, test_search):
         """
         Checking my report list
         """
@@ -87,16 +84,17 @@ class TestReporter:
 
             # Comparison type
             assert data['report_type'].lower() == my_reporter_page.get_text_type_of_report()
+            logger.info('my reports "type" is comparison.')
 
             # Comparison OS date/time with app date/time
             app_date_time = my_reporter_page.getting_date_time_my_report()
             os_date_time = self.OS_DATE_TIME
             assert os_date_time == app_date_time, 'Date & Time of my report is wrong'
+            logger.info('my reports "date/time" is comparison.')
 
             # Comparison name
             assert data['search_input'].lower() == my_reporter_page.get_text_name_of_report
-
-            logger.info('my reports is saved and success.')
+            logger.info('my reports "name app" is comparison.')
 
         else:
             logger.error('Search result is empty.')

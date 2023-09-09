@@ -7,7 +7,6 @@ class HeaderPageLocators:
         self.locators = {
             "search_button": 'com.dariaos.reporter:id/search_button',
             "search_input": 'com.dariaos.reporter:id/search_src_text',
-            "assert_report_page_label": 'com.dariaos.reporter:id/txt_name_report_page',
 
             "cross_button": 'com.dariaos.reporter:id/search_close_btn',
             "assert_cross_button": '//*[@text="Search app name"]',
