@@ -15,6 +15,8 @@ class TestValidateCharacters:
             landing_page = LandingPageAction(test_search.driver)
             reporter_page = ReporterPageAction(test_search.driver)
 
+            data = self.read_search_data()
+
             landing_page.click_report_button()
             logger.info(f"Click the report button on app")
 
@@ -25,7 +27,7 @@ class TestValidateCharacters:
 
             test_reporter.select_type_report_drop_down(test_search)  # open the drop/down
 
-            test_reporter.insert_text_report(test_search)  # insert the text
+            test_reporter.insert_text_report(test_search, data['description_long'])  # insert the text
 
             count_characters = reporter_page.get_count_character()  # get the number of characters
             assert count_characters == 1000, "Validation Error Count Characters"
