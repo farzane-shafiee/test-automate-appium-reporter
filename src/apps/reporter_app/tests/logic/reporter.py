@@ -56,13 +56,12 @@ class TestReporter:
         assert reporter_page.assert_file_not_attached() is not None, 'File not attached'
         logger.info('Select image asserted successfully')
 
-    def insert_text_report(self, test_search):
+    def insert_text_report(self, test_search, description):
         reporter_page = ReporterPageAction(test_search.driver)
 
         # Insert text into reporter input
         reporter_page.click_bug_report_text_input()
-        data = self.read_search_data()
-        reporter_page.insert_bug_report_text(data['description'])  # test for characters limit to be write
+        reporter_page.insert_bug_report_text(description)  # test for characters limit to be written
         logger.info('Insert text asserted successfully')
 
     def getting_os_date_time(self, test_search):

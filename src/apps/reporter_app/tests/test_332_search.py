@@ -1,5 +1,4 @@
 from selenium.common import TimeoutException
-from src.apps.reporter_app.page.header_page.header_page_action import HeaderPageAction
 from src.apps.reporter_app.page.landing_page.landing_page_action import LandingPageAction
 from src.apps.reporter_app.page.report_page.reporter_page_action import ReporterPageAction
 from src.logs_config.test_logger import logger
@@ -15,7 +14,6 @@ class TestSearch:
 
         wait = test_search.wait
         try:
-            header_page = HeaderPageAction(test_search.driver)
             landing_page = LandingPageAction(test_search.driver)
             reporter_page = ReporterPageAction(test_search.driver)
 

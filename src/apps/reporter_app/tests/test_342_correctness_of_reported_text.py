@@ -29,10 +29,10 @@ class TestCorrectnessOfReportedText:
                 assert True
             else:
                 landing_page.click_report_button()
-                test_reporter.select_type_report_drop_down(test_search)
+                test_reporter.select_type_report_drop_down(test_search)  # open the drop/down
 
-                test_reporter.insert_attach(test_search)
-                test_reporter.insert_text_report(test_search)
+                test_reporter.insert_attach(test_search)  # insert attach file
+                test_reporter.insert_text_report(test_search, data['description'])  # insert the text
 
                 reporter_page.click_send_report_button()
                 logger.info('Click the send button asserted successfully')
