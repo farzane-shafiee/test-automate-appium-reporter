@@ -1,0 +1,11 @@
+2023-09-15 22:18:03,127   -   test_330_switch_tab   -   INFO   -   Switch tab test is running
+2023-09-15 22:18:06,546   -   test_330_switch_tab   -   INFO   -   Switch tab test is successful
+2023-09-15 22:18:06,551   -   test_330_switch_tab   -   ERROR   -   Assertion Error Searches 1146 (42S02): Table 'dariya_logs.reporter_logs' doesn't exist
+2023-09-15 22:24:13,376   -   test_330_switch_tab   -   INFO   -   Switch tab test is running
+2023-09-15 22:24:15,330   -   test_330_switch_tab   -   INFO   -   Switch tab test is successful
+2023-09-15 22:24:15,333   -   test_330_switch_tab   -   ERROR   -   Assertion Error Searches 1146 (42S02): Table 'dariya_logs.reporter_logs' doesn't exist
+2023-09-15 22:34:46,398   -   test_330_switch_tab   -   INFO   -   Switch tab test is running
+2023-09-15 22:34:48,728   -   test_330_switch_tab   -   INFO   -   Switch tab test is successful
+2023-09-15 22:34:48,827   -   test_330_switch_tab   -   ERROR   -   Assertion Error Searches 1406 (22001): Data too long for column 'logs' at row 1
+2023-09-15 22:39:10,314   -   test_330_switch_tab   -   INFO   -   Switch tab test is running
+2023-09-15 22:39:12,269   -   test_330_switch_tab   -   INFO   -   Switch tab test is successful
