@@ -63,5 +63,5 @@ class BaseTest:
         """
         Read data from YAML file and return a Json.
         """
-        return YAMLReader.data_reader("device_data/data_device.yml")
+        return YAMLReader.data_reader("src/device_data/data_device.yml")
 

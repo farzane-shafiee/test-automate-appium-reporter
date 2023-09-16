@@ -39,7 +39,7 @@ class MySQLManager(AbstractDBManager, QueryExecutionMixin):
             raise Exception("Not connected to the database.")
         cursor = self.connection.cursor()
 
-        log_file = open('logs_config/logs.log', 'r')
+        log_file = open('src/logs_config/logs.log', 'r')
         for values in log_file:
             query = "INSERT INTO reporter_logs (logs) VALUES (%s)"
             cursor.execute(query, (values,))

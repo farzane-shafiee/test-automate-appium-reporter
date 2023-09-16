@@ -1,1 +1,1 @@
-SEARCH_INPUT_DATA_FILE_PATH = "device_data/input_data.yml"
+SEARCH_INPUT_DATA_FILE_PATH = "src/device_data/input_data.yml"
