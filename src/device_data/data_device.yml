@@ -1,3 +1,15 @@
+#app: "bs://9c86ef613776004227028ea637e0667c6e7fef46"
+#platformName: "android"
+#deviceName: "Xiaomi Redmi Note 9"
+#platformVersion: "10.0"
+#automationName: 'Appium'
+#appiumVersion: "2.0.1"
+#browserName: "chrome"
+#framework: "pytest"
+#browserstackLocal: "true"
+#buildName: "browserstack-build-1"
+#projectName: "BrowserStack Sample"
+
 appium:uid: "52c97a2c"
 platformName: "Android"
 appium:platformVersion: "13"

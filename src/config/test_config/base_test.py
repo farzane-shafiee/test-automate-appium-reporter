@@ -21,7 +21,11 @@ class BaseTest:
         cls.initialize_mysql_manager()
 
         try:
+            # user_name = os.environ.get('USER_NAME')
+            # access_key = os.environ.get('ACCESS_KEY')
             cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", cls.read_data_device())
+            # cls.driver = webdriver.Remote("https://" + user_name + ":" + access_key + "@hub-cloud.browserstack.com/wd/hub",
+            #                               cls.read_data_device())
         except Exception as e:
             logger.warning(f"Error connecting to:{e}")
             assert False
@@ -57,11 +61,10 @@ class BaseTest:
             database=db_database,
         )
         cls.mysql_manager.connect()
-        
+
     @classmethod
     def read_data_device(cls):
         """
         Read data from YAML file and return a Json.
         """
         return YAMLReader.data_reader("src/device_data/data_device.yml")
-
