@@ -126,3 +126,35 @@ expected <block end>, but found '<scalar>'
   in "src/device_data/data_device.yml", line 21, column 1
 expected <block end>, but found '<scalar>'
   in "src/device_data/data_device.yml", line 22, column 60
+2023-10-05 00:45:53,912   -   setup_class   -   WARNING   -   Error connecting to:while parsing a block mapping
+  in "src/device_data/data_device.yml", line 21, column 1
+expected <block end>, but found '<scalar>'
+  in "src/device_data/data_device.yml", line 22, column 60
+2023-10-05 00:45:53,968   -   setup_class   -   WARNING   -   Error connecting to:while parsing a block mapping
+  in "src/device_data/data_device.yml", line 21, column 1
+expected <block end>, but found '<scalar>'
+  in "src/device_data/data_device.yml", line 22, column 60
+2023-10-05 00:45:53,996   -   setup_class   -   WARNING   -   Error connecting to:while parsing a block mapping
+  in "src/device_data/data_device.yml", line 21, column 1
+expected <block end>, but found '<scalar>'
+  in "src/device_data/data_device.yml", line 22, column 60
+2023-10-05 00:45:54,026   -   setup_class   -   WARNING   -   Error connecting to:while parsing a block mapping
+  in "src/device_data/data_device.yml", line 21, column 1
+expected <block end>, but found '<scalar>'
+  in "src/device_data/data_device.yml", line 22, column 60
+2023-10-05 00:45:54,058   -   setup_class   -   WARNING   -   Error connecting to:while parsing a block mapping
+  in "src/device_data/data_device.yml", line 21, column 1
+expected <block end>, but found '<scalar>'
+  in "src/device_data/data_device.yml", line 22, column 60
+2023-10-05 00:45:54,088   -   setup_class   -   WARNING   -   Error connecting to:while parsing a block mapping
+  in "src/device_data/data_device.yml", line 21, column 1
+expected <block end>, but found '<scalar>'
+  in "src/device_data/data_device.yml", line 22, column 60
+2023-10-05 00:45:54,117   -   setup_class   -   WARNING   -   Error connecting to:while parsing a block mapping
+  in "src/device_data/data_device.yml", line 21, column 1
+expected <block end>, but found '<scalar>'
+  in "src/device_data/data_device.yml", line 22, column 60
+2023-10-05 00:45:54,155   -   setup_class   -   WARNING   -   Error connecting to:while parsing a block mapping
+  in "src/device_data/data_device.yml", line 21, column 1
+expected <block end>, but found '<scalar>'
+  in "src/device_data/data_device.yml", line 22, column 60
