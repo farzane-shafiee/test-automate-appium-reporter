@@ -23,9 +23,11 @@ class BaseTest:
         try:
             # user_name = os.environ.get('USER_NAME')
             # access_key = os.environ.get('ACCESS_KEY')
-            cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", cls.read_data_device())
+            # cls.driver = webdriver.Remote("http://localhost:4723/wd/hub", cls.read_data_device())
             # cls.driver = webdriver.Remote("https://" + user_name + ":" + access_key + "@hub-cloud.browserstack.com/wd/hub",
             #                               cls.read_data_device())
+            url = 'https://ondemand.eu-central-1.saucelabs.com:443/wd/hub'
+            cls.driver = webdriver.Remote(url, cls.read_data_device())
         except Exception as e:
             logger.warning(f"Error connecting to:{e}")
             assert False
