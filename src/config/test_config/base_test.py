@@ -23,19 +23,19 @@ class BaseTest:
         try:
             user_name = os.getenv("BROWSERSTACK_USERNAME")
             access_key = os.getenv("BROWSERSTACK_ACCESS_KEY")
-            browserstack_local = os.getenv("BROWSERSTACK_LOCAL")
-            browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
-            app = os.getenv("BROWSERSTACK_APP_ID")
+            # browserstack_local = os.getenv("BROWSERSTACK_LOCAL")
+            # browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
+            # app = os.getenv("BROWSERSTACK_APP_ID")
 
-            desired_cap = {
-                'app': app,
-                'device': 'Xiaomi Redmi Note 9',
-                'browserstack.local': browserstack_local,
-                'browserstack.localIdentifier': browserstack_local_identifier
-            }
+            # desired_cap = {
+            #     'app': app,
+            #     'device': 'Xiaomi Redmi Note 9',
+            #     'browserstack.local': browserstack_local,
+            #     'browserstack.localIdentifier': browserstack_local_identifier
+            # }
 
             cls.driver = webdriver.Remote("https://" + user_name + ":" + access_key + "@hub-cloud.browserstack.com/wd/hub",
-                                      desired_cap)
+                                      cls.read_data_device())
 
             # user_name = os.environ.get('USER_NAME')
             # access_key = os.environ.get('ACCESS_KEY')
@@ -85,4 +85,4 @@ class BaseTest:
         """
         Read data from YAML file and return a Json.
         """
-        return YAMLReader.data_reader("src/device_data/data_device.yml")
+        return YAMLReader.data_reader("src/device_data/browserstack.yml")

@@ -1,0 +1,4 @@
+app: 'bs://9c86ef613776004227028ea637e0667c6e7fef46'
+device: 'Xiaomi Redmi Note 9'
+browserstack.local: 'false'
+browserstack.localIdentifier: 'Test123'
