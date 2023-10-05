@@ -10,11 +10,11 @@
 #buildName: "browserstack-build-1"
 #projectName: "BrowserStack Sample"
 
-appium:uid: "52c97a2c"
-platformName: "Android"
-appium:platformVersion: "13"
-appium:appPackage: "com.dariaos.reporter"
-appium:appActivity: "com.dariaos.reporter.activities.MainActivity"
+#appium:uid: "52c97a2c"
+#platformName: "Android"
+#appium:platformVersion: "13"
+#appium:appPackage: "com.dariaos.reporter"
+#appium:appActivity: "com.dariaos.reporter.activities.MainActivity"
 
 
 
